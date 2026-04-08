@@ -28,16 +28,14 @@
           </div>
         </div>
 
-        <!-- Lottie Animation Column -->
+        <!-- Lottie Column (alternating between two animations) -->
         <div class="w-full md:w-1/2 lg:w-5/12 mt-8 md:mt-0">
-          <div :class="['animate__animated', { 'animate__zoomIn': isVisible }]">
-            <LottieAnimation
-              :src="lottieUrl"
-              width="100%"
-              height="auto"
-              :loop="true"
-              :autoplay="true"
-              class="max-w-[280px] sm:max-w-[350px] md:max-w-[400px] mx-auto"
+          <div :class="['animate__animated', { 'animate__zoomIn': isVisible }]" class="flex justify-center">
+            <DotLottieVue
+              :src="lottieUrls[currentLottieIndex]"
+              autoplay
+              loop
+              style="max-width: 350px; width: 100%; height: auto"
             />
           </div>
         </div>
@@ -49,11 +47,16 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
 import { ArrowRightCircleIcon } from '@heroicons/vue/24/outline'
-import LottieAnimation from './LottieAnimation.vue'
+import { DotLottieVue } from '@lottiefiles/dotlottie-vue'
 
-const lottieUrl = 'https://lottie.host/5f9afe6b-6edf-401d-afe4-9df94ed5a88d/Dr7eV3QQTG.lottie'
+// Two Lottie animations (replace with your own URLs)
+const lottieUrls = [
+  'https://lottie.host/5f9afe6b-6edf-401d-afe4-9df94ed5a88d/Dr7eV3QQTG.lottie',
+  'https://assets2.lottiefiles.com/packages/lf20_jcyafbjy.json'
+]
+const currentLottieIndex = ref(0)
 
-// Typing effect
+// Typing effect (unchanged)
 const toRotate = ['Frontend Developer', 'UI/UX Enthusiast', 'Creative Coder']
 const loopNum = ref(0)
 const isDeleting = ref(false)
@@ -80,19 +83,20 @@ const tick = () => {
   }
 }
 
-onMounted(() => {
-  intervalId = setInterval(tick, delta)
-})
-onUnmounted(() => {
-  if (intervalId) clearInterval(intervalId)
-})
-
 // Intersection Observer for visibility
 const bannerSection = ref<HTMLElement | null>(null)
 const isVisible = ref(false)
 let observer: IntersectionObserver | null = null
 
 onMounted(() => {
+  // Typing interval
+  intervalId = setInterval(tick, delta)
+  // Lottie switching interval (every 10 seconds)
+  const lottieInterval = setInterval(() => {
+    currentLottieIndex.value = (currentLottieIndex.value + 1) % lottieUrls.length
+  }, 10000)
+  
+  // Intersection Observer
   if (bannerSection.value) {
     observer = new IntersectionObserver(
       ([entry]) => {
@@ -102,14 +106,18 @@ onMounted(() => {
     )
     observer.observe(bannerSection.value)
   }
-})
-onUnmounted(() => {
-  if (observer) observer.disconnect()
+  
+  // Cleanup on unmount
+  onUnmounted(() => {
+    if (intervalId) clearInterval(intervalId)
+    if (lottieInterval) clearInterval(lottieInterval)
+    if (observer) observer.disconnect()
+  })
 })
 </script>
 
 <style scoped>
-/* ---------- Original Banner.js styles (exactly as you provided) ---------- */
+/* Your existing styles (unchanged) */
 .banner {
   margin-top: 0;
   padding: 190px 0 100px 0;
@@ -122,11 +130,7 @@ onUnmounted(() => {
   font-weight: 700;
   letter-spacing: 0.8px;
   padding: 8px 10px;
-  background: linear-gradient(
-    90.21deg,
-    rgba(170, 54, 124, 0.5) -5.91%,
-    rgba(74, 47, 189, 0.5) 111.58%
-  );
+  background: linear-gradient(90.21deg, rgba(170, 54, 124, 0.5) -5.91%, rgba(74, 47, 189, 0.5) 111.58%);
   border: 1px solid rgba(255, 255, 255, 0.5);
   font-size: 20px;
   margin-bottom: 16px;
@@ -161,39 +165,16 @@ onUnmounted(() => {
   transition: 0.3s ease-in-out;
   line-height: 1;
 }
-
-/* ---------- Responsive overrides (shrinks on mobile) ---------- */
 @media (max-width: 767px) {
-  .banner {
-    padding: 100px 0 60px 0 !important;
-  }
-  .banner .tagline {
-    font-size: 14px !important;
-    padding: 4px 8px !important;
-  }
-  .banner h1 {
-    font-size: 28px !important;
-    line-height: 1.2 !important;
-  }
-  .banner p {
-    font-size: 14px !important;
-    width: 100% !important;
-  }
-  .banner button {
-    font-size: 16px !important;
-    margin-top: 30px !important;
-    padding: 10px 20px !important;
-  }
-  .banner button svg {
-    font-size: 18px !important;
-  }
+  .banner { padding: 100px 0 60px 0 !important; }
+  .banner .tagline { font-size: 14px !important; padding: 4px 8px !important; }
+  .banner h1 { font-size: 28px !important; line-height: 1.2 !important; }
+  .banner p { font-size: 14px !important; width: 100% !important; }
+  .banner button { font-size: 16px !important; margin-top: 30px !important; padding: 10px 20px !important; }
+  .banner button svg { font-size: 18px !important; }
 }
 @media (min-width: 768px) and (max-width: 1023px) {
-  .banner {
-    padding: 140px 0 80px 0 !important;
-  }
-  .banner h1 {
-    font-size: 42px !important;
-  }
+  .banner { padding: 140px 0 80px 0 !important; }
+  .banner h1 { font-size: 42px !important; }
 }
 </style>
