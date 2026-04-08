@@ -1,5 +1,5 @@
 <template>
-  <div ref="container" :style="{ width, height }"></div>
+  <div ref="container" :style="{ width: widthStr, height: heightStr }"></div>
 </template>
 
 <script setup lang="ts">
@@ -17,6 +17,10 @@ const props = defineProps<{
 const container = ref<HTMLElement | null>(null)
 let animation: any
 
+// Convert width/height to string with px if number
+const widthStr = typeof props.width === 'number' ? `${props.width}px` : props.width
+const heightStr = typeof props.height === 'number' ? `${props.height}px` : props.height
+
 onMounted(() => {
   if (container.value) {
     animation = lottie.loadAnimation({
@@ -30,8 +34,6 @@ onMounted(() => {
 })
 
 onUnmounted(() => {
-  if (animation) {
-    animation.destroy()
-  }
+  if (animation) animation.destroy()
 })
 </script>
