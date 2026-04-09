@@ -6,7 +6,7 @@
         <div class="w-full md:w-1/2 lg:w-7/12">
           <div :class="['animate__animated', { 'animate__fadeIn': isVisible }]">
             <span class="tagline">Welcome to my Portfolio</span>
-            <h1 class="font-bold leading-tight mb-5 text-4xl sm:text-5xl md:text-6xl lg:text-7xl">
+            <h1 class="font-bold leading-tight text-4xl sm:text-5xl md:text-6xl lg:text-7xl">
               Hi, I'm Toretto —
               <span class="txt-rotate">
                 <span class="wrap">{{ displayText }}</span>
@@ -28,7 +28,7 @@
           </div>
         </div>
 
-        <!-- Lottie Column (alternating) -->
+        <!-- Lottie Column -->
         <div class="w-full md:w-1/2 lg:w-5/12 mt-8 md:mt-0">
           <div :class="['animate__animated', { 'animate__zoomIn': isVisible }]" class="flex justify-center">
             <div class="lottie-container" style="width: 350px; height: 350px; display: flex; align-items: center; justify-content: center;">
@@ -52,14 +52,14 @@ import { ref, onMounted, onUnmounted } from 'vue'
 import { ArrowRightCircleIcon } from '@heroicons/vue/24/outline'
 import { DotLottieVue } from '@lottiefiles/dotlottie-vue'
 
-// Two working Lottie animations (second one is a reliable public JSON)
+// ✅ First: remote (CORS-friendly). Second: local file.
 const lottieUrls = [
   'https://lottie.host/5f9afe6b-6edf-401d-afe4-9df94ed5a88d/Dr7eV3QQTG.lottie',
-  'https://assets5.lottiefiles.com/packages/lf20_iv4dsxpr.json'
+  '/lottie/second.lottie'   // <-- place your downloaded file here
 ]
 const currentLottieIndex = ref(0)
 
-// Typing effect
+// Typing effect (unchanged)
 const toRotate = ['Frontend Developer', 'UI/UX Enthusiast', 'Creative Coder']
 const loopNum = ref(0)
 const isDeleting = ref(false)
@@ -93,21 +93,15 @@ let observer: IntersectionObserver | null = null
 let lottieInterval: ReturnType<typeof setInterval> | null = null
 
 onMounted(() => {
-  // Typing interval
   intervalId = setInterval(tick, delta)
-  
-  // Lottie switching interval (every 10 seconds)
   lottieInterval = setInterval(() => {
     currentLottieIndex.value = (currentLottieIndex.value + 1) % lottieUrls.length
-    console.log(`Switched to Lottie ${currentLottieIndex.value}`)
+    console.log(`Switched to Lottie index ${currentLottieIndex.value}`)
   }, 10000)
-  
-  // Observer
+
   if (bannerSection.value) {
     observer = new IntersectionObserver(
-      ([entry]) => {
-        isVisible.value = entry.isIntersecting
-      },
+      ([entry]) => { isVisible.value = entry.isIntersecting },
       { threshold: 0.1 }
     )
     observer.observe(bannerSection.value)
@@ -122,7 +116,7 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
-/* Original styles (unchanged) */
+/* Your existing styles – unchanged */
 .banner {
   margin-top: 0;
   padding: 190px 0 100px 0;
@@ -159,7 +153,7 @@ onUnmounted(() => {
   color: #fff;
   font-weight: 700;
   font-size: 20px;
-  margin-top: 60px;
+  margin-top: 40px;
   letter-spacing: 0.8px;
   display: flex;
   align-items: center;
