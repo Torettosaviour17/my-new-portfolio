@@ -55,7 +55,7 @@ import { DotLottieVue } from '@lottiefiles/dotlottie-vue'
 // ✅ First: remote (CORS-friendly). Second: local file.
 const lottieUrls = [
   'https://lottie.host/5f9afe6b-6edf-401d-afe4-9df94ed5a88d/Dr7eV3QQTG.lottie',
-  '/lottie/second.lottie'   // <-- place your downloaded file here
+  '/lottie/Developer.lottie'   // <-- place your downloaded file here
 ]
 const currentLottieIndex = ref(0)
 
