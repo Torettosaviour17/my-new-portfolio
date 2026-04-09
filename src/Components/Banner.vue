@@ -17,7 +17,7 @@
               tools. I’m passionate about turning designs into clean code and crafting seamless user
               experiences. Let’s work together to bring your ideas to life!
             </p>
-            <a href="#connect" class="btn-link inline-block mt-8 sm:mt-12 md:mt-16">
+            <a href="#connect" class="btn-link inline-block">
               <button class="group flex items-center text-white font-bold text-lg sm:text-xl border border-white px-6 py-3 sm:px-8 sm:py-4 hover:bg-white hover:text-black transition-all duration-300">
                 Let’s Connect
                 <ArrowRightCircleIcon
@@ -28,15 +28,18 @@
           </div>
         </div>
 
-        <!-- Lottie Column (alternating between two animations) -->
+        <!-- Lottie Column (alternating) -->
         <div class="w-full md:w-1/2 lg:w-5/12 mt-8 md:mt-0">
           <div :class="['animate__animated', { 'animate__zoomIn': isVisible }]" class="flex justify-center">
-            <DotLottieVue
-              :src="lottieUrls[currentLottieIndex]"
-              autoplay
-              loop
-              style="max-width: 350px; width: 100%; height: auto"
-            />
+            <div class="lottie-container" style="width: 350px; height: 350px; display: flex; align-items: center; justify-content: center;">
+              <DotLottieVue
+                :key="currentLottieIndex"
+                :src="lottieUrls[currentLottieIndex]"
+                autoplay
+                loop
+                style="width: 100%; height: 100%; object-fit: contain"
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -49,14 +52,14 @@ import { ref, onMounted, onUnmounted } from 'vue'
 import { ArrowRightCircleIcon } from '@heroicons/vue/24/outline'
 import { DotLottieVue } from '@lottiefiles/dotlottie-vue'
 
-// Two Lottie animations (replace with your own URLs)
+// Two working Lottie animations (second one is a reliable public JSON)
 const lottieUrls = [
   'https://lottie.host/5f9afe6b-6edf-401d-afe4-9df94ed5a88d/Dr7eV3QQTG.lottie',
-  'https://assets2.lottiefiles.com/packages/lf20_jcyafbjy.json'
+  'https://assets5.lottiefiles.com/packages/lf20_iv4dsxpr.json'
 ]
 const currentLottieIndex = ref(0)
 
-// Typing effect (unchanged)
+// Typing effect
 const toRotate = ['Frontend Developer', 'UI/UX Enthusiast', 'Creative Coder']
 const loopNum = ref(0)
 const isDeleting = ref(false)
@@ -83,20 +86,23 @@ const tick = () => {
   }
 }
 
-// Intersection Observer for visibility
+// Intersection Observer
 const bannerSection = ref<HTMLElement | null>(null)
 const isVisible = ref(false)
 let observer: IntersectionObserver | null = null
+let lottieInterval: ReturnType<typeof setInterval> | null = null
 
 onMounted(() => {
   // Typing interval
   intervalId = setInterval(tick, delta)
+  
   // Lottie switching interval (every 10 seconds)
-  const lottieInterval = setInterval(() => {
+  lottieInterval = setInterval(() => {
     currentLottieIndex.value = (currentLottieIndex.value + 1) % lottieUrls.length
+    console.log(`Switched to Lottie ${currentLottieIndex.value}`)
   }, 10000)
   
-  // Intersection Observer
+  // Observer
   if (bannerSection.value) {
     observer = new IntersectionObserver(
       ([entry]) => {
@@ -106,18 +112,17 @@ onMounted(() => {
     )
     observer.observe(bannerSection.value)
   }
-  
-  // Cleanup on unmount
-  onUnmounted(() => {
-    if (intervalId) clearInterval(intervalId)
-    if (lottieInterval) clearInterval(lottieInterval)
-    if (observer) observer.disconnect()
-  })
+})
+
+onUnmounted(() => {
+  if (intervalId) clearInterval(intervalId)
+  if (lottieInterval) clearInterval(lottieInterval)
+  if (observer) observer.disconnect()
 })
 </script>
 
 <style scoped>
-/* Your existing styles (unchanged) */
+/* Original styles (unchanged) */
 .banner {
   margin-top: 0;
   padding: 190px 0 100px 0;
@@ -172,6 +177,7 @@ onMounted(() => {
   .banner p { font-size: 14px !important; width: 100% !important; }
   .banner button { font-size: 16px !important; margin-top: 30px !important; padding: 10px 20px !important; }
   .banner button svg { font-size: 18px !important; }
+  .lottie-container { width: 250px !important; height: 250px !important; }
 }
 @media (min-width: 768px) and (max-width: 1023px) {
   .banner { padding: 140px 0 80px 0 !important; }
