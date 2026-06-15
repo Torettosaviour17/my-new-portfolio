@@ -53,6 +53,9 @@ importers:
       vue-router:
         specifier: ^5.0.3
         version: 5.0.4(vue@3.6.0-beta.8(typescript@5.9.3))
+      vue3-carousel:
+        specifier: ^0.17.0
+        version: 0.17.0(vue@3.6.0-beta.8(typescript@5.9.3))
     devDependencies:
       '@tsconfig/node24':
         specifier: ^24.0.4
@@ -1938,6 +1941,11 @@ packages:
     peerDependencies:
       typescript: '>=5.0.0'
 
+  vue3-carousel@0.17.0:
+    resolution: {integrity: sha512-kvb2CRpsEtLGSbiOq/fXfayMJeiwMMjnNSbqWI/Ee7tgfY/ofNanRuhpd7WRVtDdzJY1HvygdLawlBhIyJTM2w==}
+    peerDependencies:
+      vue: ^3.5.0
+
   vue@3.6.0-beta.8:
     resolution: {integrity: sha512-cSylFSwkw0Y0ZxBaEAOfAvn9bZvu6U0GaOdO6DG2mE/20QK9LvmCrG5SA/1x9L8t+HG3hw+V1qRINtYcqRCdOw==}
     peerDependencies:
@@ -3733,6 +3741,10 @@ snapshots:
       '@volar/typescript': 2.4.28
       '@vue/language-core': 3.2.6
       typescript: 5.9.3
+
+  vue3-carousel@0.17.0(vue@3.6.0-beta.8(typescript@5.9.3)):
+    dependencies:
+      vue: 3.6.0-beta.8(typescript@5.9.3)
 
   vue@3.6.0-beta.8(typescript@5.9.3):
     dependencies:
