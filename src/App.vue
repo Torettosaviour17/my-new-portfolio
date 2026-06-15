@@ -2,23 +2,22 @@
   <div class="hero-bg">
     <NavBar />
     <Banner />
-    <!--<Projects />
-    <Testimonials />
-    <Contact />
+    <!--<Contact />
     <Footer /> -->
   </div>
-       <Skills />
-
+  <Skills />
+  <Projects />
+  <Testimonials />
 </template>
 
 <script setup lang="ts">
-import NavBar from './components/NavBar.vue'
-import Banner from './components/Banner.vue'
-import Skills from './components/Skills.vue'
-// import Projects from './components/Projects.vue'
-// import Testimonials from './components/Testimonials.vue'
-// import Contact from './components/Contact.vue'
-// import Footer from './components/Footer.vue'
+import NavBar from './Components/NavBar.vue'
+import Banner from './Components/Banner.vue'
+import Skills from './Components/Skills.vue'
+import Projects from './Components/ProjectsFile.vue'
+import Testimonials from './Components/TestimonialSection.vue'
+// import Contact from './Components/Contact.vue'
+// import Footer from './Components/Footer.vue'
 </script>
 
 <style scoped>
