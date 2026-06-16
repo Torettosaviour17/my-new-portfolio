@@ -1,10 +1,17 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import type { RouteRecordRaw } from 'vue-router'
-import Home from '../Components/Home.vue'
+import Banner from '../Components/Banner.vue' // 👈 Import your main landing component
 
 const routes: Array<RouteRecordRaw> = [
-  { path: '/', name: 'Home', component: Home },
-  { path: '/:pathMatch(.*)*', redirect: '/' },
+  {
+    path: '/',
+    name: 'Home',
+    component: Banner, // 👈 Assigned your Banner component to the root path
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    redirect: '/',
+  },
 ]
 
 const router = createRouter({

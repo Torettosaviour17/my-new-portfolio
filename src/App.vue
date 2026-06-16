@@ -2,12 +2,12 @@
   <div class="hero-bg">
     <NavBar />
     <Banner />
-    <!--<Contact />
-    <Footer /> -->
   </div>
   <Skills />
   <Projects />
   <Testimonials />
+  <Contact />
+  <!-- <Footer /> -->
 </template>
 
 <script setup lang="ts">
@@ -16,7 +16,7 @@ import Banner from './Components/Banner.vue'
 import Skills from './Components/Skills.vue'
 import Projects from './Components/ProjectsFile.vue'
 import Testimonials from './Components/TestimonialSection.vue'
-// import Contact from './Components/Contact.vue'
+import Contact from './Components/ContactSection.vue'
 // import Footer from './Components/Footer.vue'
 </script>
 

@@ -2,24 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
-js, Footer.js */
+/* js, Footer.js */
 @font-face {
   font-family: Centra;
-  src: url("./assets/font/CentraNo2-Bold.ttf");
+  src: url('./assets/font/CentraNo2-Bold.ttf');
   font-weight: 700;
 }
 @font-face {
   font-family: Centra;
-  src: url("./assets/font/CentraNo2-Medium.ttf");
+  src: url('./assets/font/CentraNo2-Medium.ttf');
   font-weight: 500;
 }
 @font-face {
   font-family: Centra;
-  src: url("./assets/font/CentraNo2-Book.ttf");
+  src: url('./assets/font/CentraNo2-Book.ttf');
   font-weight: 400;
 }
-
-* {
+*/ * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -36,7 +35,7 @@ body {
 
   background-color: #121212 !important;
   color: #fff !important;
-  font-family: "Centra", sans-serif !important;
+  font-family: 'Centra', sans-serif !important;
 }
 
 h1,

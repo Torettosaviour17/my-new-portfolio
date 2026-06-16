@@ -15,6 +15,7 @@
     "format": "prettier --write --experimental-cli src/"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
     "@heroicons/vue": "^2.2.0",
     "@lottiefiles/dotlottie-vue": "^0.11.10",
     "@lottiefiles/lottie-player": "^2.0.12",
@@ -23,6 +24,7 @@
     "animate.css": "^4.1.1",
     "bootstrap": "^5.3.8",
     "lottie-web": "^5.13.0",
+    "oh-vue-icons": "1.0.0-rc3",
     "vue": "^3.5.30",
     "vue-router": "^5.0.3",
     "vue3-carousel": "^0.17.0"
