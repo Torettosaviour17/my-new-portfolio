@@ -1,15 +1,19 @@
 <template>
   <section id="skills" class="relative py-16 md:py-24 overflow-hidden">
     <div class="container mx-auto px-4 relative z-10">
-      <div class="bg-[#151515] bg-opacity-70 backdrop-blur-sm rounded-[40px] md:rounded-[64px] p-6 md:p-12 lg:p-16 shadow-xl border border-[#aa367c] border-opacity-30">
+      <div
+        class="bg-[#151515] bg-opacity-70 backdrop-blur-sm rounded-[40px] md:rounded-[64px] p-6 md:p-12 lg:p-16 shadow-xl border border-[#aa367c] border-opacity-30"
+      >
         <div class="text-center mb-10">
-          <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#aa367c] to-[#4a2fbd]">
+          <h2
+            class="text-3xl sm:text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#aa367c] to-[#4a2fbd]"
+          >
             My Skillset
           </h2>
           <p class="text-[#d1d1e9] max-w-2xl mx-auto mt-4 text-base md:text-lg">
-            I'm a frontend developer passionate about building clean,
-            responsive, and interactive web apps. I work with modern tools to
-            bring interfaces to life with great performance and design.
+            I'm a frontend developer passionate about building clean, responsive, and interactive
+            web apps. I work with modern tools to bring interfaces to life with great performance
+            and design.
           </p>
         </div>
 
@@ -17,8 +21,7 @@
           :items-to-show="itemsToShow"
           :wrap-around="true"
           :transition="600"
-          :autoplay="true"
-          :autoplay-interval="3000"
+          :autoplay="3000"
           :pause-autoplay-on-hover="true"
           :breakpoints="breakpoints"
         >
@@ -59,19 +62,19 @@ const breakpoints = {
 const itemsToShow = 3
 
 const skills = [
-  { name: "React", value: 95 },
-  { name: "Vue.js", value: 82 },
-  { name: "TypeScript", value: 88 },
-  { name: "JavaScript", value: 89 },
-  { name: "Tailwind CSS", value: 92 },
-  { name: "HTML & CSS", value: 97 },
-  { name: "Responsive Design", value: 90 },
-  { name: "UI Design", value: 82 },
-  { name: "Version Control", value: 93 },
-  { name: "WordPress", value: 85 },
-  { name: "Next.js", value: 80 },
-  { name: "Node.js", value: 75 },
-  { name: "Express.js", value: 70 },
+  { name: 'React', value: 95 },
+  { name: 'Vue.js', value: 82 },
+  { name: 'TypeScript', value: 88 },
+  { name: 'JavaScript', value: 89 },
+  { name: 'Tailwind CSS', value: 92 },
+  { name: 'HTML & CSS', value: 97 },
+  { name: 'Responsive Design', value: 90 },
+  { name: 'UI Design', value: 82 },
+  { name: 'Version Control', value: 93 },
+  { name: 'WordPress', value: 85 },
+  { name: 'Next.js', value: 80 },
+  { name: 'Node.js', value: 75 },
+  { name: 'Express.js', value: 70 },
 ]
 </script>
 
