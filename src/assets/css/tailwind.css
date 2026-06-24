@@ -18,7 +18,7 @@
   src: url('./assets/font/CentraNo2-Book.ttf');
   font-weight: 400;
 }
-*/ * {
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
